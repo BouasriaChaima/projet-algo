@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1734547162 source:c:\users\acer\desktop\c projects\tps\algoproject\main.c
+	<stdio.h>
+	<stdlib.h>
+

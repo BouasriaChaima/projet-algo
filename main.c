@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct telement{
+    char mot[100];
+    struct telement *next;
+};
+
+//display the linked list
+void Displaylist(struct telement *l){
+    while (l != NULL){
+        printf("%s", &l->mot);
+        l = l->next;
+        printf("\n");
+    }
+}
+
+// create a new element
+void createlement (char word[]){
+     struct telement * p= (struct telement*)malloc(sizeof(struct telement));
+    p->mot = word;
+    p->next = NULL;
+}
+
 // function to display the matrix
 void DisplayMatrix(char matrix[][100], int rows) {
     for (int i = 0; i < rows; i++) {
@@ -66,6 +87,7 @@ void bubbleSort(int arr[], int sizeofArr) {
     printf("\nNumber of comparisons: %d\n", nbrComp);
     printf("Number of permutations: %d\n", nbrPerm);
 }
+
 // bubble sort function for a matrix of characters
 void BubbleSortMatrix(char matrix[][100], int rows) {
     char temp;
@@ -93,7 +115,6 @@ void BubbleSortMatrix(char matrix[][100], int rows) {
     printf("nombre de comparaison : %d \n" , nbrComp);
     printf("nombre de permutations : %d\n", nbrPerm);
 }
-
 
 // the function merge
  // global variables for comp & perm counters
@@ -138,6 +159,7 @@ void Merge ( int arr[] , int low , int mid , int high ){
     printf("merged array in [%d , %d] ", left , right);
     Display(arr, right +1 );
 }
+
 //merge sort function
 void MergeSort (int arr [] , int low , int high){
     if (low < high){
@@ -147,6 +169,7 @@ void MergeSort (int arr [] , int low , int high){
         Merge( arr , low , mid , high);
     }
 }
+
 // the function insertion sort
 void insertionsort(int arr[], int sizeofarr){
     int i, j, temp;
@@ -164,43 +187,10 @@ void insertionsort(int arr[], int sizeofarr){
          nbrPerm++ ;
     Display(arr , sizeofarr);
     }
-    printf("Number of comparisons : %d \n" , nbrComp);
+  printf("Number of comparisons : %d \n" , nbrComp);
   printf("number of permutations : %d \n" , nbrPerm);
 }
-// the function of quick sort
-// the function that does the partitioning
-/*int partition(int arr[], int start, int end , int nbrComp , int nbrPerm){
-    int pivot, i , j, temp;
-    pivot = arr[end];
-    i= start;
-    for(j=start;j<end-1;j++){
-        if(arr[j]<pivot){
-           nbrComp++;
-           temp = arr[i];
-           arr[i] = arr[j];
-           arr[j] = temp;
-           i++;
-        nbrPerm++;
-        }
-    }
-    temp = arr[i];
-    arr[i]= arr[end];
-    arr[end] = temp;
-    nbrPerm++;
-    return i;
 
-}
- // the quick sort algorithm using the recursive calls
- void quicksort( int arr, int start, int end){
-       int nbrComp =0, nbrPerm =0;
-     if (start < end){
-        int pivot = partition(arr, start, end, nbrComp, nbrPerm);
-        quicksort(arr, start, pivot -1);
-        quicksort(arr, pivot +1, end);
-     }
-       printf("Number of comparisons : %d \n" , nbrComp);
-       printf("number of permutations : %d \n" , nbrPerm);
- }*/
 // the function of quick sort
 // the function that does the partitioning
 int NbrComp=0,NbrPerm=0;
@@ -227,6 +217,7 @@ int partition(int arr[], int start, int end ){
     return i;
 
 }
+
  // the quick sort algorithm using the recursive calls
  void quicksort( int arr, int start, int end){
        int nbrComp =0, nbrPerm =0;
@@ -236,6 +227,7 @@ int partition(int arr[], int start, int end ){
         quicksort(arr, pivot +1, end);
      }
  }
+
  // comb sort function using 1.3 factor(the most common used factor)
  void combsort(int arr[], int sizeofarr){
      int n= sizeofarr;
@@ -270,7 +262,7 @@ int main()
     Display(array , arraySize);
 
 
-  /*  printf("Selection sorting execution \n");
+    printf("Selection sorting execution \n");
     SelectionSorting(array , arraySize);
     printf("sorted array using selection sorting \n ");
     Display(array , arraySize);
@@ -298,9 +290,9 @@ int main()
     printf("each step of the insertion sorting process \n");
     insertionsort(array , arraySize);
     printf("sorted array using insertion sorting \n ");
-    Display(array , arraySize); */
+    Display(array , arraySize);
 
-  /*  printf("insertion sorting execution \n");
+    printf("insertion sorting execution \n");
     insertionsort(array , arraySize);
     printf("sorted array using insertion sorting \n ");
     Display(array , arraySize);
@@ -312,7 +304,7 @@ int main()
      printf("sorted array using quick sorting \n ");
      Display(array , arraySize);
      printf("Number of comparisons : %d \n" , NbrComp);
-     printf("number of permutations : %d \n" , NbrPerm); */
+     printf("number of permutations : %d \n" , NbrPerm);
 
     printf("comb sorting execution \n");
     combsort(array , arraySize);

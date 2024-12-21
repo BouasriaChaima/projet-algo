@@ -18,7 +18,7 @@ void Displaylist(struct telement *l){
 // create a new element
 void createlement (char word[]){
      struct telement * p= (struct telement*)malloc(sizeof(struct telement));
-    p->mot = word;
+   // p->mot = word;
     p->next = NULL;
 }
 // function to count number of elements in a list

@@ -137,11 +137,23 @@ void Bubblesortlist( struct telement *l){
      Q = l;
      for (int i=0;i<n;i++){
             while(Q->next!=NULL){
+                nbComp++;
                 if(strcmp(Q->mot, Q->next->mot)>0){
                     P = Q->next;
                     Q->next = P->next;
                     P->next = Q;
-                    if()
+                nbPerm++;
+                    if(prev == NULL){
+                        l = P;
+                    }
+                    else{
+                        prev->next=P;
+                    }
+                }
+                prev = P;
+                else{
+                    prev = Q;
+                    Q = Q->next;
                 }
 
             }
@@ -380,25 +392,25 @@ int main()
     printf("sorted array using comb sorting \n ");
     Display(array , arraySize);
     */
-     struct telement * head = malloc(sizeof(struct Node));
-    struct telement* second = malloc(sizeof(struct Node));
-   struct telement* third = malloc(sizeof(struct Node));
+     struct telement * l = malloc(sizeof(struct telement));
+    struct telement* second = malloc(sizeof(struct telement));
+   struct telement* third = malloc(sizeof(struct telement));
 
-    strcpy(head->word, "banana");
-    strcpy(second->word, "apple");
-    strcpy(third->word, "carrot");
+    strcpy(l->mot, "chaima");
+    strcpy(second->mot, "manel");
+    strcpy(third->mot, "algo");
 
-    head->next = second;
+    l->next = second;
     second->next = third;
     third->next = NULL;
 
     printf("Before sorting: \n");
-    Displaylist(head);
+    Displaylist(l);
 
-    head = insertionsortlist(head);
+   insertionsortlist(l);
 
     printf("After sorting: \n");
-    Displaylist(head);
+    Displaylist(l);
 
 
     return 0;

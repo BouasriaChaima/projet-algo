@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 struct telement{
     char mot[100];
     struct telement *next;
@@ -20,6 +20,14 @@ void createlement (char word[]){
      struct telement * p= (struct telement*)malloc(sizeof(struct telement));
     p->mot = word;
     p->next = NULL;
+}
+// function to count number of elements in a list
+int countelements(struct telement *l){
+    int ne=0;
+    while(l != NULL){
+        ne++;
+    }
+    return ne;
 }
 
 // function to display the matrix
@@ -115,7 +123,31 @@ void BubbleSortMatrix(char matrix[][100], int rows) {
     printf("nombre de comparaison : %d \n" , nbrComp);
     printf("nombre de permutations : %d\n", nbrPerm);
 }
+// bubble sort of a linked list
+void Bubblesortlist( struct telement *l){
+     if (l == NULL || l->next == NULL{
+      printf("the list is already sorted");
+     }
+     int n = countelements(l);
+     int nbComp =0, nbPerm =0:
+    struct telement *P;
+    struct telement *Q;
+     struct telement *prev;
+     prev = NULL;
+     Q = l;
+     for (int i=0;i<n;i++){
+            while(Q->next!=NULL){
+                if(strcmp(Q->mot, Q->next->mot)>0){
+                    P = Q->next;
+                    Q->next = P->next;
+                    P->next = Q;
+                    if()
+                }
 
+            }
+     }
+
+}
 // the function merge
  // global variables for comp & perm counters
 int nbrComp = 0;
@@ -190,6 +222,43 @@ void insertionsort(int arr[], int sizeofarr){
   printf("Number of comparisons : %d \n" , nbrComp);
   printf("number of permutations : %d \n" , nbrPerm);
 }
+// the insertion sort of a linked list
+void  insertionsortlist(struct telement* l ) {
+    if (l == NULL || l->next == NULL){
+        printf("the list is already sorted");
+    }
+     int nbComp =0, nbPerm =0:
+    struct telement *P;
+    struct telement *Q;
+     struct telement *P2;
+    struct telement *temp;
+    P = l;
+    Q = l->next;
+    while (Q != NULL) {
+        P2 = Q->next;
+        nbComp++;
+        if (strcmp(P->mot, Q->mot) > 0) {
+          Q->next = P;
+          P=Q;
+          l=P;
+          nbPerm++;
+        }
+        else {
+                temp = P;
+        while(temp->next != NULL && strcmp(temp->next->mot, Q->mot)<0){
+                temp = temp->next;
+
+        }
+        Q->next=temp->next;
+        temp->next= Q;
+        nbPerm++:
+        }
+        Q = P2;
+    }
+      printf("nombre de comparaison : %d \n" , nbrComp);
+    printf("nombre de permutations : %d\n", nbrPerm);
+
+}
 
 // the function of quick sort
 // the function that does the partitioning
@@ -251,7 +320,7 @@ int partition(int arr[], int start, int end ){
  }
 
 int main()
-{
+{/*
     int array [] = {64 , 34 , 25 , 12 , 22 , 11 , 90};
     int arraySize = sizeof(array) / sizeof(array[0]);
 
@@ -310,7 +379,26 @@ int main()
     combsort(array , arraySize);
     printf("sorted array using comb sorting \n ");
     Display(array , arraySize);
+    */
+     struct telement * head = malloc(sizeof(struct Node));
+    struct telement* second = malloc(sizeof(struct Node));
+   struct telement* third = malloc(sizeof(struct Node));
 
+    strcpy(head->word, "banana");
+    strcpy(second->word, "apple");
+    strcpy(third->word, "carrot");
+
+    head->next = second;
+    second->next = third;
+    third->next = NULL;
+
+    printf("Before sorting: \n");
+    Displaylist(head);
+
+    head = insertionsortlist(head);
+
+    printf("After sorting: \n");
+    Displaylist(head);
 
 
     return 0;
